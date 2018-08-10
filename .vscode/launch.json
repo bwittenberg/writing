@@ -1,0 +1,13 @@
+{
+  "version": "0.2.0",
+  "configurations": [{
+      "type": "node",
+      "request": "launch",
+      "name": "Launch Program",
+      "program": "${file}",
+      "runtimeExecutable": "${workspaceRoot}/node_modules/babel-cli/bin/babel-node.js",
+      "args": [
+        "--presets es2015"
+      ]
+  }]
+}

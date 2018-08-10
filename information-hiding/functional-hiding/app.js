@@ -1,9 +1,12 @@
-const permissions = [
+// app.js
+import { construct, selectPermissionForProject } from './permissions';
+
+const permissions = construct([
   { projectId: 1, access: 'edit' },
   { projectId: 2, access: 'view' },
   { projectId: 3, access: 'edit' },
   { projectId: 4, access: 'edit' },
-];
+]);
 
 const projects = [
   { id: 1, name: 'Project 1' },
@@ -14,8 +17,8 @@ const projects = [
 
 const getEditableProjects = ({ projects, permissions }) => {
   return projects.filter(project => {
-    return permissions.some(permission => {
-      return permission.projectId === project.id && permission.access === 'edit';
-    });
+    return selectPermissionForProject({ permissions, project }).access === 'edit';
   });
 };
+
+console.log(getEditableProjects({ projects, permissions })); // [{id: 1, name: "Project 1"}, {id: 3, name: "Project 3"}, {id: 4, name: "Project 4"}]
